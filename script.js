@@ -16,7 +16,11 @@ function validar(field){
    
     let user= field.value.substring(0,field.value.indexOf('@'))
     let domain= field.value.substring(field.value.indexOf('@'),field.value.length)
-    if((user.search('@')==-1)&&(domain.search('@')==0)){
+    if(
+        (user.search('@')==-1)&&(domain.search('@')==0)&&
+        (user.search(' ')=-1)&&(domain.search(' ')==-1)&&
+        (user.length>3)&&(domain.length>3)
+        ){
         
         document.querySelector('.txtEmail').innerHTML=''
         let p=document.createElement('p');
