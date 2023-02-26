@@ -17,10 +17,11 @@ function validar(field){
     let user= field.value.substring(0,field.value.indexOf('@'))
     let domain= field.value.substring(field.value.indexOf('@'),field.value.length)
     if(
-        (user.search('@')==-1)&&(domain.search('@')==0)&&
-        (user.search(' ')=-1)&&(domain.search(' ')==-1)&&
-        (user.length>3)&&(domain.length>3)
-        ){
+        ((user.search('@')==-1)&&(domain.search('@')==0))&&
+        ((user.search(' ')==-1)&&(domain.search(' ')==-1))&&
+        ((user.search('.')>=-1)&&(domain.search('.')>=0))
+        )
+        {
         
         document.querySelector('.txtEmail').innerHTML=''
         let p=document.createElement('p');
@@ -29,16 +30,24 @@ function validar(field){
         document.querySelector('.txtEmail').appendChild(p);
     } else {
         
-        document.querySelector('.txtEmail').innerHTML=''
+       document.querySelector('.txtEmail').innerHTML=''
        let p=document.createElement('p');
-       let txt=document.createTextNode('invalido')
+       let txt=document.createTextNode('Email invalido')
        p.appendChild(txt)
        document.querySelector('.txtEmail').appendChild(p);
+       
     }
 }
+
 usuario.addEventListener('blur',()=>{
     validar(usuario);
 })
-password.addEventListener('blur',()=>{
-    console.log('senha')
+
+password.addEventListener('blur',(senha)=>{
+    senha= password.value
+    if(senha.length){
+        console.log('ok')
+    }else{
+        console.log('A senha precisa ter no minimo 8 digitos')
+    }
 })
